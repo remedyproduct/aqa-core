@@ -6,7 +6,7 @@ setup(
     description='AQA Core',
     long_description='Automation - Quality Assurance - Core',
     long_description_content_type='text/markdown',
-    url='',
+    url='https://github.com/remedyproduct/aqa-core',
     author='Ivan Veramyou',
     author_email='ivan.veramyou22@gmail.com',
     licence='unlicense',
