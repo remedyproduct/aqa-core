@@ -1,8 +1,11 @@
 from setuptools import setup
 
+name = 'aqa-core'
+version = '0.0.3'
+
 setup(
-    name='aqa-core',
-    version='0.0.1',
+    name=name,
+    version=version,
     description='AQA Core',
     long_description='Automation - Quality Assurance - Core',
     long_description_content_type='text/markdown',
@@ -39,5 +42,7 @@ setup(
         'urllib3>=1.26.4',
         'webdriver-manager>=3.3.0',
     ],
-    python_requires='>=3.7',
+    python_requires='>=3.7'
 )
+
+print('%s = %s' % (name, version))

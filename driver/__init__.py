@@ -69,7 +69,15 @@ class Driver:
             if self._browser == Browser.Chrome:
                 self._driver = webdriver.Chrome(ChromeDriverManager().install())
                 self.opening_to_url(self._capabilities['url'])
-                self.resize_screen(self._capabilities['fullScreen'])
+                try:
+                    self.resize_screen(
+                        self._capabilities['fullScreen'],
+                        self._capabilities['width'],
+                        self._capabilities['height']
+                    )
+                except KeyError:
+                    self.resize_screen(self._capabilities['fullScreen'])
+
         if self.verify_mobile_platform():
             if self.verify_android_platform():
                 capability = {
@@ -128,13 +136,13 @@ class Driver:
         if self.verify_web_platform():
             self._driver.get(url)
 
-    def resize_screen(self, full_screen: bool = True):
+    def resize_screen(self, full_screen: bool = True, width=1024, height=768):
         if self.verify_web_platform():
             if full_screen:
                 self._driver.maximize_window()
             else:
                 self._driver.set_window_position(0, 0)
-                self._driver.set_window_size(1024, 768)
+                self._driver.set_window_size(width, height)
 
     # Mobile platforms only
     def verify_mobile_platform(self):

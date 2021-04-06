@@ -1,2 +1,4 @@
 .idea/
 venv/
+aqa_core.egg-info/
+dist/

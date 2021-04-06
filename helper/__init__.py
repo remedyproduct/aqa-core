@@ -24,7 +24,8 @@ class TestHelper(object):
             attachment_type=AttachmentType.PNG
         )
 
-    def message(self, message, name='Message'):
+    @staticmethod
+    def message(message, name='Message'):
         allure.attach(message, name=name, attachment_type=allure.attachment_type.TEXT)
 
     def error_message(self, message, screen_and_source=True, hard_assert=True):
@@ -36,6 +37,7 @@ class TestHelper(object):
             raise Exception(message)
 
     def sleep(self, seconds=10):
+        self.message("Sleep: %s seconds" % seconds, "Sleep")
         time.sleep(seconds)
 
     def hard_assert_true(self, result, message):
@@ -46,30 +48,51 @@ class TestHelper(object):
         if result is True:
             self.error_message(message)
 
-    def get_first_name(self):
-        return names.get_first_name()
+    def get_first_name(self, gender=None):
+        first_name = names.get_first_name(
+            gender=gender if gender is not None else self.get_random_item(['male', 'female'])
+        )
+        self.message("First Name: %s" % first_name, "Create new random first name")
+        return first_name
 
     def get_last_name(self):
-        return names.get_last_name()
+        last_name = names.get_last_name()
+        self.message("Last Name: %s" % last_name, "Create new random last name")
+        return last_name
+
+    def get_full_name(self, gender=None):
+        full_name = names.get_full_name(
+            gender=gender if gender is not None else self.get_random_item(['male', 'female'])
+        )
+        self.message("Full Name: %s" % full_name, "Create new random full name")
+        return full_name
 
     def get_contact_number(self, code=37525, size=7):
         range_start = 10 ** (size - 1)
         range_end = (10 ** size) - 1
-        return str(code) + str(randint(range_start, range_end))
+        contact_number = str(code) + str(randint(range_start, range_end))
+        self.message("Contact Number: %s" % contact_number, "Get random contact number")
+        return contact_number
 
-    def random_number(self, length):
+    def get_random_number(self, length):
         range_start = 10 ** (length - 1)
         range_end = (10 ** length) - 1
-        return randint(range_start, range_end)
+        random_number = randint(range_start, range_end)
+        self.message("Random Number: %s" % random_number, "Get random number by %s length" % length)
+        return random_number
 
-    def random_account_data(self, company, password='Mm11111111', code='%H%M%S.%d%m.%Y'):
-        return {
+    def get_random_account_data(self, company, password='Mm11111111', code='%H%M%S.%d%m.%Y'):
+        account = {
             "email": "%s%s@gmail.com" % (company, datetime.now().strftime(code)),
             "password": "%s" % password
         }
+        self.message("Account: " % account, "Create random Account")
+        return account
+
+    def get_random_item(self, array):
+        item = array[randint(0, len(array) - 1)]
+        self.message("Item: %s" % item, "Get random item from list: %s" % array)
+        return item
 
 
 test_helper = TestHelper()
-
-
-print(test_helper.random_account_data('GradGab'))
