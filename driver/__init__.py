@@ -144,6 +144,10 @@ class Driver:
                 self._driver.set_window_position(0, 0)
                 self._driver.set_window_size(width, height)
 
+    def refresh_page(self):
+        if self.verify_web_platform():
+            self._driver.refresh()
+
     # Mobile platforms only
     def verify_mobile_platform(self):
         return self._platform == Platform.Android or self._platform == Platform.iOS

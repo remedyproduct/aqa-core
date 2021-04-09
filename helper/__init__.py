@@ -86,13 +86,20 @@ class TestHelper(object):
             "email": "%s%s@gmail.com" % (company, datetime.now().strftime(code)),
             "password": "%s" % password
         }
-        self.message("Account: " % account, "Create random Account")
+        self.message("Account: %s" % account, "Create random Account")
         return account
 
     def get_random_item(self, array):
         item = array[randint(0, len(array) - 1)]
         self.message("Item: %s" % item, "Get random item from list: %s" % array)
         return item
+
+    def check_locators_on_page(self, locators):
+        for locator in locators:
+            self.hard_assert_true(
+                self._driver.wait_element(locator),
+                "Can not find %s" % locator.description()
+            )
 
 
 test_helper = TestHelper()
