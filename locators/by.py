@@ -1,7 +1,8 @@
 from selenium.webdriver.common.by import By
 
 
-def setup_locator_by(locator_by: str):
+def get_by(locator_by: str):
+    """Get the type of a ui element from a set"""
     by = locator_by.lower()
     if by == 'id':
         return By.ID
