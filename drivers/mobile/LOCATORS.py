@@ -23,6 +23,11 @@ ANDROID_TAKE_PHOTO_3 = Locator(
     by=By.XPATH, value='//android.view.View[@content-desc="Shutter button"]',
     dynamic=False, description='ANDROID TAKE PHOTO 3', check_opening_page=False
 )
+ANDROID_TAKE_PHOTO_4 = Locator(
+    name='ANDROID TAKE PHOTO 4',
+    by=By.XPATH, value='//android.widget.ImageButton[@content-desc="Take picture"]',
+    dynamic=False, description='ANDROID TAKE PHOTO 4', check_opening_page=False
+)
 ANDROID_COMPLETE_PHOTO_1 = Locator(
     name='ANDROID COMPLETE PHOTO 1',
     by=By.XPATH, value='//*[@text="OK"]',
@@ -32,6 +37,11 @@ ANDROID_COMPLETE_PHOTO_2 = Locator(
     name='ANDROID COMPLETE PHOTO 2',
     by=By.XPATH, value='//android.widget.ImageView[@content-desc="Done"]',
     dynamic=False, description='ANDROID COMPLETE PHOTO 2', check_opening_page=False
+)
+ANDROID_COMPLETE_PHOTO_3 = Locator(
+    name='ANDROID COMPLETE PHOTO 3',
+    by=By.XPATH, value='//android.widget.Button[@text="OK"]',
+    dynamic=False, description='ANDROID COMPLETE PHOTO 3', check_opening_page=False
 )
 # iOS
 iOS_SELECT_TAKE_PHOTO = Locator(
@@ -48,4 +58,22 @@ iOS_COMPLETE_PHOTO = Locator(
     name='iOS COMPLETE PHOTO',
     by=By.XPATH, value='//XCUIElementTypeStaticText[@name="Use Photo"]',
     dynamic=False, description='iOS COMPLETE PHOTO', check_opening_page=False
+)
+# DROPDOWN SELECT
+# ANDROID
+ANDROID_SELECT = Locator(
+    name='ANDROID DROPDOWN SELECT',
+    by=By.XPATH, value='//android.widget.CheckedTextView[@text="%s"]',
+    dynamic=True, description='ANDROID DROPDOWN SELECT', check_opening_page=False
+)
+# iOS
+iOS_PICKER_WHEEL_SELECT = Locator(
+    name='PICKER WHEEL SELECT',
+    by=By.XPATH, value='//XCUIElementTypePicker[@name="ios_picker"]/XCUIElementTypePickerWheel',
+    dynamic=False, description='iOS PICKER WHEEL SELECT', check_opening_page=False
+)
+iOS_PICKER_WHEEL_DONE = Locator(
+    name='PICKER WHEEL DONE',
+    by=By.XPATH, value='//XCUIElementTypeOther[@name="done_button"]',
+    dynamic=False, description='iOS PICKER WHEEL DONE', check_opening_page=False
 )

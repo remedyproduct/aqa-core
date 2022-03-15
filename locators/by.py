@@ -20,5 +20,7 @@ def get_by(locator_by: str):
         return By.CLASS_NAME
     elif by == 'css':
         return By.CSS_SELECTOR
+    elif by == 'css':
+        return By.Acc
     else:
         return None

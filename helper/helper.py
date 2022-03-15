@@ -1,13 +1,15 @@
+import os
 import time
-from random import randint
-from datetime import datetime
 import names
-from allure.allure import *
+import random
+import string
+from random import randint
+from lorem_text import lorem
+from datetime import datetime
+from allure.allure import error_message, message
 
 
 def sleep(seconds=10):
-    msg = 'Sleep %s seconds' % seconds
-    message(msg, msg)
     time.sleep(seconds)
 
 
@@ -74,3 +76,15 @@ def get_random_account_data(company, password='Mm11111111', code='%H%M%S.%d%m.%Y
     }
     message("Account: %s" % account, "Create random Account")
     return account
+
+
+def get_project_absolute_path():
+    return "%s/" % os.path.abspath(os.curdir)
+
+
+def get_random_letters(length):
+    return "".join([random.choice(string.ascii_letters) for i in range(length)])
+
+
+def get_random_paragraphs(length):
+    return lorem.paragraphs(5)[:length]

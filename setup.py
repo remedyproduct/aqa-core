@@ -1,16 +1,16 @@
 from setuptools import setup, find_packages
 from helper.echo import echo, ECHO_COLORS
 
-name = 'aqa-core'
-version = '12.07.2021'
+name = 'test-automation-core'
+version = '2021.11.24'
 
 setup(
     name=name,
     version=version,
-    description='AQA Core',
-    long_description='Automation - Quality Assurance - Core',
+    description='tac',
+    long_description='test-automation-core',
     long_description_content_type='text/markdown',
-    url='https://github.com/remedyproduct/aqa-core',
+    url='https://github.com/IVeram22/test-automation-core',
     author='Ivan Veramyou',
     author_email='ivan.veramyou22@gmail.com',
     licence='unlicense',
@@ -35,6 +35,7 @@ setup(
         'constants>=0.6.0',
         'crayons>=0.4.0',
         'idna>=2.10',
+        'lorem-text>=2.1',
         'names>=0.3.0',
         'parse>=1.19.0',
         'parse-type>=0.5.2',

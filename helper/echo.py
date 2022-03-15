@@ -17,8 +17,8 @@ class ECHO_COLORS:
 def echo(msg="-", color=None):
     if color:
         console_text = \
-            '%s[%s::%s] %s %s' \
-            % (color, date.today(), datetime.now().strftime("%H:%M:%S"), msg, ECHO_COLORS.ENDC)
+            '[%s::%s] %s%s %s' \
+            % (date.today(), datetime.now().strftime("%H:%M:%S"), color, msg, ECHO_COLORS.ENDC)
     else:
         console_text = '[%s::%s] %s' % (date.today(), datetime.now().strftime("%H:%M:%S"), msg)
     print(console_text)

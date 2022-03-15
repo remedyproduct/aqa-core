@@ -1,4 +1,8 @@
+import math
+import time
+
 from drivers.base_driver import BaseDriver
+from helper.echo import echo, ECHO_COLORS
 from helper.helper import hard_assert_true, sleep
 from pages.error import PageNotContainLocatorError
 
@@ -11,11 +15,9 @@ class BasePage:
         self.locators = locators
 
     def is_open(self):
-        sleep(self.driver.wait_current)
         self._get_page_status(True)
 
     def is_close(self):
-        sleep(self.driver.wait_current)
         self._get_page_status(False)
 
     def get_locator(self, locator_name: str):
@@ -26,9 +28,22 @@ class BasePage:
         raise PageNotContainLocatorError(locator_name, self.name, self.driver.platform)
 
     def _get_page_status(self, status: bool):
+        echo(
+            'Verify "%s" page is %s. The method has been started.'
+            % (self.name, 'Open' if status else 'Closed'),
+            ECHO_COLORS.WARNING
+        )
+        index = 0
+        start_time = time.time()
         for locator in self.locators:
+            if index == 2 and self.driver.is_mobile_platform():
+                break
             if locator.is_check():
                 hard_assert_true(
-                    self.driver.exists(locator) if status else self.driver.not_exists(locator),
-                    "Can not find %s" % locator.description  # TODO update Msg
+                    self.driver.displayed(locator) if status else self.driver.not_displayed(locator),
+                    "Can not find %s." % locator.description  # TODO update Msg
                 )
+                index += 1
+        echo('The %s method was over. Its time is %s seconds.'
+             % ('Open' if status else 'Close', math.ceil(time.time() - start_time)), ECHO_COLORS.WARNING
+             )
